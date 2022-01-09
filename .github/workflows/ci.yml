@@ -21,10 +21,10 @@ jobs:
         env:
           CI: true
       - name: Build Project
-        if: github.context.event == 'push'
+        if: github.event_name == 'push'
         run: npm run build
       - name: Deply to staging
-        if: github.context.event == 'push'
+        if: github.event_name == 'push'
         run: npx surge --project ./build --domain hateful-range.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
